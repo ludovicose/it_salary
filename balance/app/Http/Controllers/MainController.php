@@ -21,7 +21,7 @@ class MainController extends Controller
 
             $service = app()->make($class);
 
-            $result = call_user_func_array([$service, $method], $content['params']);
+            $result = call_user_func([$service, $method], ...[$content['params']]);
 
         } catch (Exception $exception) {
             return $exception->getMessage();

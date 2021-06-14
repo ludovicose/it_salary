@@ -9,12 +9,12 @@ use Illuminate\Support\Collection;
 final class BalanceHistoryService implements \App\Contract\BalanceHistoryService
 {
 
-    public function userBalance(int $userId): BalanceHistory
+    public function userBalance(array $data): BalanceHistory
     {
         // TODO: Implement userBalance() method.
     }
 
-    public function history(int $userId): Collection
+    public function history(array $data): Collection
     {
         // TODO: Implement history() method.
     }

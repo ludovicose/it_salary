@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 interface BalanceHistoryService
 {
-    public function userBalance(int $userId): BalanceHistory;
+    public function userBalance(array $data): BalanceHistory;
 
-    public function history(int $userId): Collection;
+    public function history(array $data): Collection;
 }

@@ -17,7 +17,8 @@ class BalanceTest extends TestCase
             'jsonrpc' => '2.0',
             'method' => 'balance.userBalance',
             'params' => [
-                'user_id' => 10
+                'limit'=>50,
+                'user_id' => 10,
             ],
             'id' => 2
         ]);

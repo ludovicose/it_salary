@@ -13,12 +13,15 @@ class CreateBalanceHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('balance_history', function (Blueprint $table) {
+        Schema::create('balance_histories', function (Blueprint $table) {
             $table->id();
             $table->float('value',2);
             $table->float('balance',2);
-            $table->bigInteger('user_id');
             $table->timestamps();
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateBalanceHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('balance_history');
+        Schema::dropIfExists('balance_histories');
     }
 }

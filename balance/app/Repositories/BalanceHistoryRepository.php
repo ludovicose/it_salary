@@ -3,14 +3,17 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Contract\Criteria;
 use App\Models\BalanceHistory;
-use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class BalanceHistoryRepository implements \App\Contract\BalanceHistoryRepository
 {
     public function getBalanceByUserId(int $userId): BalanceHistory
     {
-        $balance = BalanceHistory::where('user_id', $userId)->first();
+        $balance = BalanceHistory::where('user_id', $userId)
+            ->latest()
+            ->first();
 
         if (null === $balance) {
             throw new \DomainException('Данный пользователь не найден');
@@ -19,8 +22,10 @@ final class BalanceHistoryRepository implements \App\Contract\BalanceHistoryRepo
         return $balance;
     }
 
-    public function getHistoriesByUserId(int $userId): Collection
+    public function getHistoriesByUser(int $userId, Criteria $criteria): LengthAwarePaginator
     {
-        return BalanceHistory::where('user_id', $userId)->get();
+        return BalanceHistory::filter($criteria)
+            ->where('user_id', $userId)
+            ->paginate($criteria->getLimit());
     }
 }

@@ -5,7 +5,7 @@ namespace App\DTO;
 
 use Illuminate\Http\Request;
 
-final class UserBalanceDTO
+final class UserBalanceDTO extends BaseDTO
 {
     public $userId;
 

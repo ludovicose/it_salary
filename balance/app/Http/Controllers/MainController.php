@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ErrorResource;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
@@ -23,7 +23,10 @@ class MainController extends Controller
             return app()->call($method);
 
         } catch (Exception $exception) {
-            return $exception->getMessage();
+            return new ErrorResource([
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage()
+            ]);
         }
     }
 }

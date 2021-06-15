@@ -25,9 +25,7 @@ class ShowCurrentBalanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'params' => [
-                'user_id' => 'required'
-            ]
+            'params.user_id' => 'required'
         ];
     }
 

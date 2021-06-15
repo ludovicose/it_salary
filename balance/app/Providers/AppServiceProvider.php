@@ -2,13 +2,16 @@
 
 namespace App\Providers;
 
+use App\Contract\BalanceHistoryCriteriaFactory;
 use App\Contract\BalanceHistoryService;
+use App\Criteria\BalanceHistory\Factory\BalanceHistoryEloquentFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
     public $bindings = [
-        BalanceHistoryService::class => \App\Service\BalanceHistoryService::class
+        BalanceHistoryService::class => \App\Service\BalanceHistoryService::class,
+        BalanceHistoryCriteriaFactory::class => BalanceHistoryEloquentFactory::class
     ];
 
     /**

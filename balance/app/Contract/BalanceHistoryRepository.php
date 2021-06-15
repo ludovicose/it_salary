@@ -3,11 +3,11 @@
 namespace App\Contract;
 
 use App\Models\BalanceHistory;
-use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface BalanceHistoryRepository
 {
     public function getBalanceByUserId(int $userId): ?BalanceHistory;
 
-    public function getHistoriesByUserId(int $userId): Collection;
+    public function getHistoriesByUser(int $userId, Criteria $criteria): LengthAwarePaginator;
 }

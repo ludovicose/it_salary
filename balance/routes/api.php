@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/balance',  [MainController::class, '__invoke'])->name('main');
+Route::post('/balance', MainController::class)->name('main');

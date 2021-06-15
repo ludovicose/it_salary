@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\DTO\UserBalanceDTO;
+use App\DTO\UserBalanceHistoryDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShowCurrentBalanceRequest extends FormRequest
+final class ShowBalanceHistoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,6 +34,6 @@ class ShowCurrentBalanceRequest extends FormRequest
 
     public function getDTO()
     {
-        return UserBalanceDTO::fromRequest($this);
+        return UserBalanceHistoryDTO::fromRequest($this);
     }
 }

@@ -3,19 +3,35 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Contract\BalanceHistoryRepository;
 use App\DTO\UserBalanceDTO;
+use App\DTO\UserBalanceHistoryDTO;
 use App\Models\BalanceHistory;
 use Illuminate\Support\Collection;
 
 final class BalanceHistoryService implements \App\Contract\BalanceHistoryService
 {
-    public function getCurrentBalance(UserBalanceDTO $balanceDTO): BalanceHistory
+    /**
+     * @var BalanceHistoryRepository
+     */
+    private $balanceHistoryRepository;
+
+    /**
+     * BalanceHistoryService constructor.
+     * @param BalanceHistoryRepository $balanceHistoryRepository
+     */
+    public function __construct(BalanceHistoryRepository $balanceHistoryRepository)
     {
-        // TODO: Implement getCurrentBalance() method.
+        $this->balanceHistoryRepository = $balanceHistoryRepository;
     }
 
-    public function getHistories(int $userId): Collection
+    public function getCurrentBalance(UserBalanceDTO $balanceDTO): BalanceHistory
     {
-        // TODO: Implement getHistories() method.
+        return $this->balanceHistoryRepository->getBalanceByUserId($balanceDTO->userId);
+    }
+
+    public function getHistories(UserBalanceHistoryDTO $historyDTO): Collection
+    {
+        return $this->balanceHistoryRepository->getHistoriesByUserId($historyDTO->userId);
     }
 }

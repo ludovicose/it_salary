@@ -18,7 +18,9 @@ class BalanceHistoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id
+            'user_id' => $this->user_id,
+            'value' => $this->value,
+            'balance' => $this->balance,
         ];
     }
 }

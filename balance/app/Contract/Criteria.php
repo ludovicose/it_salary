@@ -9,4 +9,6 @@ interface Criteria
     public function filter();
 
     public function getLimit();
+
+    public function getPage();
 }

@@ -26,6 +26,6 @@ final class BalanceHistoryRepository implements \App\Contract\BalanceHistoryRepo
     {
         return BalanceHistory::filter($criteria)
             ->where('user_id', $userId)
-            ->paginate($criteria->getLimit());
+            ->paginate($criteria->getLimit(), ['*'], 'page', $criteria->getPage());
     }
 }

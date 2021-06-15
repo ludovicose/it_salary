@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Criteria\Eloquent\BalanceHistory;
+namespace App\Criteria\BalanceHistory\Eloquent;
 
 use App\Criteria\Eloquent\Criteria;
 use App\DTO\BaseDTO;
@@ -60,5 +60,10 @@ final class BalanceHistoryCriteria extends Criteria
     public function getLimit(): int
     {
         return $this->data['limit'];
+    }
+
+    public function getPage(): int
+    {
+        return $this->data['page'];
     }
 }

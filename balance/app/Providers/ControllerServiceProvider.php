@@ -2,27 +2,26 @@
 
 namespace App\Providers;
 
-use App\Contract\BalanceHistoryService;
+use App\Contract\BalanceController;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class ControllerServiceProvider extends ServiceProvider
 {
     public $bindings = [
-        BalanceHistoryService::class => \App\Service\BalanceHistoryService::class
+        BalanceController::class => \App\Http\Controllers\BalanceController::class
     ];
-
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
     public function register()
     {
-
+        $this->app->bind('balance',BalanceController::class);
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */

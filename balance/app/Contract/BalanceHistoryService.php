@@ -2,12 +2,13 @@
 
 namespace App\Contract;
 
+use App\DTO\UserBalanceDTO;
 use App\Models\BalanceHistory;
 use Illuminate\Support\Collection;
 
 interface BalanceHistoryService
 {
-    public function userBalance(array $data): BalanceHistory;
+    public function getCurrentBalance(UserBalanceDTO $balanceDTO): BalanceHistory;
 
-    public function history(array $data): Collection;
+    public function getHistories(int $userId): Collection;
 }

@@ -3,19 +3,19 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\DTO\UserBalanceDTO;
 use App\Models\BalanceHistory;
 use Illuminate\Support\Collection;
 
 final class BalanceHistoryService implements \App\Contract\BalanceHistoryService
 {
-
-    public function userBalance(array $data): BalanceHistory
+    public function getCurrentBalance(UserBalanceDTO $balanceDTO): BalanceHistory
     {
-        // TODO: Implement userBalance() method.
+        // TODO: Implement getCurrentBalance() method.
     }
 
-    public function history(array $data): Collection
+    public function getHistories(int $userId): Collection
     {
-        // TODO: Implement history() method.
+        // TODO: Implement getHistories() method.
     }
 }

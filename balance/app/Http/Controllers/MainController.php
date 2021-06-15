@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
@@ -17,11 +18,9 @@ class MainController extends Controller
                 throw new Exception('Parse error');
             }
 
-            list($class, $method) = Str::of($content['method'])->explode('.');
+            $method = Str::replace('.', '@', $content['method']);
 
-            $service = app()->make($class);
-
-            $result = call_user_func([$service, $method], ...[$content['params']]);
+            return app()->call($method);
 
         } catch (Exception $exception) {
             return $exception->getMessage();

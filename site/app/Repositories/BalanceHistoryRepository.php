@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 
 final class BalanceHistoryRepository implements \App\Contract\BalanceHistoryRepository
 {
-
     /**
      * BalanceHistoryRepository constructor.
      */
@@ -50,16 +49,16 @@ final class BalanceHistoryRepository implements \App\Contract\BalanceHistoryRepo
                     'user_id' => $userId,
                 ],
             ]);
+
         $historyCollection = $result->collect();
 
         if ($historyCollection->has('error')) {
             throw new \Exception($historyCollection->get('error')['message']);
         }
 
-        $historyCollection = $result->collect();
         $pagination = $historyCollection->get('pagination');
-        $histories = collect();
 
+        $histories = collect();
         foreach ($historyCollection->get('result') as $item) {
             $histories->add((new BalanceHistory())->setRawAttributes($item));
         }
